@@ -1,4 +1,4 @@
-package com.baekjoon.web.service;
+package com.baekjoon.web.service.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,7 +12,7 @@ import java.util.List;
 
 import com.baekjoon.web.entity.Notice;
 
-public class NoticeService {
+public class JDBCNoticeService {
 	private String url = "jdbc:oracle:thin:@localhost:1521/orcl";
 	private String uid = "board";
 	private String pwd = "board";
@@ -23,7 +23,7 @@ public class NoticeService {
 		int start = 1 + (page-1)*10;     // 1, 11, 21, 31, ..
 		int end = 10*page; // 10, 20, 30, 40...
 		
-		String sql = "SELECT * FROM NOTICE_VIEW WHERE "+field+" LIKE ? AND NUM BETWEEN ? AND ?";	
+		String sql = "SELECT * FROM NOTICE WHERE "+field+" LIKE ? AND ID BETWEEN ? AND ?";	
 		
 		Class.forName(driver);
 		Connection con = DriverManager.getConnection(url,uid, pwd);
